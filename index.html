@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Swish - Simulering</title>
+    <title>Swisha - Simulering</title>
     <style>
         * {
             box-sizing: border-box;
@@ -20,135 +20,132 @@
             color: #ffffff;
         }
 
-        /* Setup Panel */
-        #setup-panel {
+        /* Input Screen (Swisha form) */
+        #input-screen {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #121c2c;
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 24px;
-        }
-
-        .setup-card {
-            background: #1b283e;
-            padding: 24px;
-            border-radius: 16px;
-            width: 100%;
-            max-width: 360px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-        }
-
-        .setup-card h2 {
-            margin-bottom: 20px;
-            font-size: 20px;
-            text-align: center;
-            color: #4cd964;
-        }
-
-        .input-group {
-            margin-bottom: 16px;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 13px;
-            margin-bottom: 6px;
-            color: #a0aec0;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 12px;
-            background: #0b131e;
-            border: 1px solid #2d3748;
-            border-radius: 8px;
-            color: #fff;
-            font-size: 16px;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: #4cd964;
-        }
-
-        .launch-btn {
-            width: 100%;
-            padding: 14px;
-            background: #4cd964;
-            border: none;
-            border-radius: 8px;
-            color: #0b131e;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .launch-btn:hover {
-            background: #3ebc52;
-        }
-
-        /* Swish App View */
-        #swish-app {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: none;
-            flex-direction: column;
             background: #0f1724;
-            user-select: none;
-            cursor: pointer;
-        }
-
-        /* Top Status Bar */
-        .status-bar {
-            height: 44px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #ffffff;
+            flex-direction: column;
+            padding: 16px;
             z-index: 10;
         }
 
-        .status-right {
+        .top-nav {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 6px;
-            font-size: 12px;
+            height: 50px;
+            padding: 0 8px;
         }
 
-        .battery-icon {
-            border: 1px solid #fff;
-            border-radius: 3px;
-            padding: 1px 3px;
-            font-size: 10px;
+        .close-icon, .help-icon {
+            font-size: 24px;
+            color: #ffffff;
+            cursor: pointer;
         }
 
-        /* Main Confirmation Screen */
-        .swish-screen {
-            flex: 1;
+        .app-title {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .tab-container {
+            display: flex;
+            gap: 8px;
+            padding: 10px 8px;
+            margin-bottom: 10px;
+        }
+
+        .tab {
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .tab.active {
+            background-color: #2ba696;
+            color: #ffffff;
+        }
+
+        .tab.inactive {
+            background-color: #1e293b;
+            color: #94a3b8;
+        }
+
+        .form-fields {
             display: flex;
             flex-direction: column;
-            position: relative;
-            overflow: hidden;
+            gap: 20px;
+            padding: 10px 8px;
+            flex: 1;
         }
 
-        /* Top Green Gradient Section */
+        .field-row {
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 12px;
+        }
+
+        .field-label {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 4px;
+        }
+
+        .field-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 18px;
+            outline: none;
+        }
+
+        .submit-container {
+            padding: 10px 8px 20px 8px;
+        }
+
+        .swisha-btn {
+            width: 100%;
+            padding: 16px;
+            background-color: #2ba696;
+            border: none;
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .swisha-btn:active {
+            background-color: #238a7d;
+        }
+
+        /* Confirmation Screen */
+        #confirmation-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0f1724;
+            display: none;
+            flex-direction: column;
+            user-select: none;
+            cursor: pointer;
+            z-index: 20;
+        }
+
         .green-header {
-            flex: 0 0 52%;
-            background: linear-gradient(135deg, #28a745 0%, #7bed9f 100%);
+            flex: 0 0 54%;
+            background: linear-gradient(135deg, #1fa76d 0%, #6ee7b7 100%);
             border-bottom-left-radius: 40px;
             border-bottom-right-radius: 40px;
             display: flex;
@@ -156,24 +153,24 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            box-shadow: 0 10px 30px rgba(40, 167, 69, 0.3);
+            box-shadow: 0 10px 30px rgba(31, 167, 109, 0.3);
+            overflow: hidden;
         }
 
         .check-container {
-            width: 90px;
-            height: 90px;
-            border: 3px solid rgba(255, 255, 255, 0.8);
+            width: 84px;
+            height: 84px;
+            border: 3px solid rgba(255, 255, 255, 0.85);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 20px;
-            animation: pulseCheck 2s infinite ease-in-out;
+            margin-bottom: 24px;
         }
 
         .check-icon {
-            width: 45px;
-            height: 25px;
+            width: 40px;
+            height: 22px;
             border-left: 4px solid #ffffff;
             border-bottom: 4px solid #ffffff;
             transform: rotate(-45deg) translate(3px, -2px);
@@ -187,242 +184,234 @@
             letter-spacing: -0.3px;
         }
 
-        /* Bottom Dark Details Section */
-        .dark-details {
+        .details-section {
             flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 35px;
+            padding-top: 30px;
             background-color: #0f1724;
-            position: relative;
         }
 
-        .timestamp {
+        .timestamp-text {
             font-size: 14px;
             color: #94a3b8;
-            margin-bottom: 20px;
-            font-weight: 400;
+            margin-bottom: 18px;
         }
 
-        .recipient-name {
+        .recipient-display {
             font-size: 26px;
             font-weight: 700;
             color: #ffffff;
             margin-bottom: 4px;
-            letter-spacing: -0.2px;
         }
 
-        .recipient-phone {
+        .phone-display {
             font-size: 15px;
             color: #94a3b8;
-            margin-bottom: 30px;
+            margin-bottom: 24px;
             letter-spacing: 0.5px;
         }
 
         .amount-display {
-            font-size: 42px;
+            font-size: 44px;
             font-weight: 700;
             color: #ffffff;
             letter-spacing: -0.5px;
         }
 
-        /* Bottom Controls / Logo Area */
+        .message-display {
+            font-size: 16px;
+            color: #cbd5e1;
+            margin-top: 10px;
+        }
+
         .bottom-bar {
-            height: 90px;
+            height: 80px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 30px;
+            padding: 0 24px;
             background-color: #0f1724;
         }
 
-        .swish-logo-area {
+        .swish-brand-container {
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .swish-spiral {
+        /* Authentic Swish Logo Recreation */
+        .swish-logo-graphic {
             width: 32px;
             height: 32px;
-            background: conic-gradient(from 0deg, #ff007f, #7f00ff, #00ffff, #00ff7f, #ffff00, #ff007f);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .swish-s-curve {
+            width: 28px;
+            height: 28px;
+            border: 4px solid transparent;
+            border-top-color: #00fa9a;
+            border-left-color: #00bfff;
             border-radius: 50%;
+            transform: rotate(-45deg);
         }
 
-        .swish-brand {
-            font-size: 22px;
+        .swish-wordmark {
+            font-size: 24px;
             font-weight: 700;
-            letter-spacing: -0.5px;
             font-style: italic;
+            letter-spacing: -1px;
+            color: #ffffff;
         }
 
-        .close-btn {
-            width: 44px;
-            height: 44px;
+        .exit-btn {
+            width: 42px;
+            height: 42px;
             background: #1e293b;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            border: none;
             color: #ffffff;
             font-size: 20px;
         }
 
-        .close-btn:active {
-            background: #334155;
-        }
-
-        /* Interactive Particle Effects (Glitter tap) */
+        /* Particle Glitter Effect */
         .particle {
             position: absolute;
-            background: radial-gradient(circle, #fff 0%, rgba(255,255,255,0) 70%);
+            background: #ffffff;
             border-radius: 50%;
             pointer-events: none;
-            animation: burst 0.8s forwards ease-out;
+            animation: glitterBurst 0.9s forwards ease-out;
+            box-shadow: 0 0 6px rgba(255,255,255,0.8);
         }
 
-        @keyframes burst {
+        @keyframes glitterBurst {
             0% {
-                transform: translate(0, 0) scale(0.2);
+                transform: translate(0, 0) scale(0.3);
                 opacity: 1;
             }
             100% {
-                transform: translate(var(--dx), var(--dy)) scale(1.5);
+                transform: translate(var(--tx), var(--ty)) scale(1.4);
                 opacity: 0;
             }
-        }
-
-        @keyframes pulseCheck {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Setup Form to customize the preview -->
-    <div id="setup-panel">
-        <div class="setup-card">
-            <h2>Swish Konfiguration</h2>
-            <div class="input-group">
-                <label>Mottagarens namn</label>
-                <input type="text" id="input-name" value="Andersson Sam">
+    <!-- Input Form Screen -->
+    <div id="input-screen">
+        <div class="top-nav">
+            <span class="close-icon">✕</span>
+            <span class="app-title">Swisha</span>
+            <span class="help-icon">?</span>
+        </div>
+        <div class="tab-container">
+            <div class="tab active">Vanlig</div>
+            <div class="tab inactive">Företag</div>
+        </div>
+        <div class="form-fields">
+            <div class="field-row">
+                <div class="field-label">Mottagare</div>
+                <input type="text" id="inp-name" class="field-input" value="Putin">
             </div>
-            <div class="input-group">
-                <label>Telefonnummer</label>
-                <input type="text" id="input-phone" value="+46 70 887 12 16">
+            <div class="field-row">
+                <div class="field-label">Telefonnummer</div>
+                <input type="text" id="inp-phone" class="field-input" value="+46 00 000 00">
             </div>
-            <div class="input-group">
-                <label>Belopp (t.ex. 375 kr)</label>
-                <input type="text" id="input-amount" value="375 kr">
+            <div class="field-row">
+                <div class="field-label">Belopp</div>
+                <input type="text" id="inp-amount" class="field-input" value="90000000000">
             </div>
-            <div class="input-group">
-                <label>Datum & Tid</label>
-                <input type="text" id="input-time" value="17 mars 2026, kl 13:10">
+            <div class="field-row">
+                <div class="field-label">Meddelande</div>
+                <input type="text" id="inp-msg" class="field-input" value="Hallo">
             </div>
-            <button class="launch-btn" onclick="launchSwish()">Visa Skärm</button>
+        </div>
+        <div class="submit-container">
+            <button class="swisha-btn" onclick="triggerSwish()">Swisha</button>
         </div>
     </div>
 
-    <!-- The Replicated Swish App View -->
-    <div id="swish-app" onclick="createParticles(event)">
-        <!-- Status Bar -->
-        <div class="status-bar">
-            <span id="display-statusbar-time">13:10</span>
-            <div class="status-right">
-                <span>5G</span>
-                <div class="battery-icon">86</div>
+    <!-- Confirmation Screen -->
+    <div id="confirmation-screen" onclick="spawnGlitter(event)">
+        <div class="green-header" id="header-area">
+            <div class="check-container">
+                <div class="check-icon"></div>
             </div>
+            <div class="success-text">Din betalning är skickad!</div>
         </div>
-
-        <!-- Main Confirmation Screen Content -->
-        <div class="swish-screen">
-            <div class="green-header">
-                <div class="check-container">
-                    <div class="check-icon"></div>
+        <div class="details-section">
+            <div class="timestamp-text" id="out-time">30 maj. 2025, kl 18:30</div>
+            <div class="recipient-display" id="out-name">Putin</div>
+            <div class="phone-display" id="out-phone">+46 00 000 00</div>
+            <div class="amount-display"><span id="out-amount">90000000000</span> kr</div>
+            <div class="message-display" id="out-msg">Hallo</div>
+        </div>
+        <div class="bottom-bar" onclick="event.stopPropagation()">
+            <div class="swish-brand-container">
+                <div class="swish-logo-graphic">
+                    <div class="swish-s-curve"></div>
                 </div>
-                <div class="success-text">Din betalning är skickad!</div>
+                <div class="swish-wordmark">swish</div>
             </div>
-
-            <div class="dark-details">
-                <div class="timestamp" id="display-time">17 mars 2026, kl 13:10</div>
-                <div class="recipient-name" id="display-name">Andersson Sam</div>
-                <div class="recipient-phone" id="display-phone">+46 70 887 12 16</div>
-                <div class="amount-display" id="display-amount">375 kr</div>
-            </div>
-
-            <div class="bottom-bar" onclick="event.stopPropagation()">
-                <div class="swish-logo-area">
-                    <div class="swish-spiral"></div>
-                    <div class="swish-brand">swish</div>
-                </div>
-                <button class="close-btn" onclick="resetSetup()">×</button>
-            </div>
+            <div class="exit-btn" onclick="resetApp()">✕</div>
         </div>
     </div>
 
     <script>
-        function launchSwish() {
-            // Grab values from setup inputs
-            document.getElementById('display-name').innerText = document.getElementById('input-name').value;
-            document.getElementById('display-phone').innerText = document.getElementById('input-phone').value;
-            document.getElementById('display-amount').innerText = document.getElementById('input-amount').value;
-            
-            const timeVal = document.getElementById('input-time').value;
-            document.getElementById('display-time').innerText = timeVal;
-            
-            // Extract time for status bar if possible
-            if(timeVal.includes('kl ')) {
-                document.getElementById('display-statusbar-time').innerText = timeVal.split('kl ')[1];
-            }
+        function triggerSwish() {
+            document.getElementById('out-name').innerText = document.getElementById('inp-name').value;
+            document.getElementById('out-phone').innerText = document.getElementById('inp-phone').value;
+            document.getElementById('out-amount').innerText = document.getElementById('inp-amount').value;
+            document.getElementById('out-msg').innerText = document.getElementById('inp-msg').value;
 
-            // Switch views
-            document.getElementById('setup-panel').style.display = 'none';
-            document.getElementById('swish-app').style.display = 'flex';
+            document.getElementById('input-screen').style.display = 'none';
+            document.getElementById('confirmation-screen').style.display = 'flex';
         }
 
-        function resetSetup() {
-            document.getElementById('swish-app').style.display = 'none';
-            document.getElementById('setup-panel').style.display = 'flex';
+        function resetApp() {
+            document.getElementById('confirmation-screen').style.display = 'none';
+            document.getElementById('input-screen').style.display = 'flex';
         }
 
-        // Interactive particle generator for the glitter tap effect
-        function createParticles(e) {
-            const app = document.getElementById('swish-app');
-            const rect = app.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+        function spawnGlitter(e) {
+            const screen = document.getElementById('confirmation-screen');
+            const rect = screen.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const clickY = e.clientY - rect.top;
 
-            // Generate multiple glitter particles per tap
-            for (let i = 0; i < 8; i++) {
+            // Spawn multiple glitter particles simulating the reference video effect
+            for (let i = 0; i < 10; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
                 
-                const size = Math.random() * 8 + 4;
+                const size = Math.random() * 6 + 3;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
-                particle.style.left = `${x}px`;
-                particle.style.top = `${y}px`;
+                particle.style.left = `${clickX}px`;
+                particle.style.top = `${clickY}px`;
 
-                // Random spray direction
                 const angle = Math.random() * Math.PI * 2;
-                const distance = Math.random() * 80 + 20;
-                const dx = Math.cos(angle) * distance;
-                const dy = Math.sin(angle) * distance;
+                const distance = Math.random() * 90 + 15;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
 
-                particle.style.setProperty('--dx', `${dx}px`);
-                particle.style.setProperty('--dy', `${dy}px`);
+                particle.style.setProperty('--tx', `${tx}px`);
+                particle.style.setProperty('--ty', `${ty}px`);
 
-                app.appendChild(particle);
+                screen.appendChild(particle);
 
-                // Clean up element after animation finishes
                 setTimeout(() => {
                     particle.remove();
-                }, 800);
+                }, 900);
             }
         }
     </script>
