@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Swish - Exakt Kopia</title>
+    <title>Swish - 1:1 Kopia</title>
     <style>
         * {
             box-sizing: border-box;
@@ -15,104 +15,32 @@
         body, html {
             width: 100%;
             height: 100%;
-            background-color: #0b131e;
+            background-color: #0b121c;
             overflow: hidden;
             color: #ffffff;
         }
 
-        /* Setup Screen */
-        #setup-screen {
+        #swish-screen {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #0f1724;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 24px;
-            z-index: 100;
-        }
-
-        .setup-card {
-            background: #1b283e;
-            padding: 24px;
-            border-radius: 16px;
-            width: 100%;
-            max-width: 360px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-        }
-
-        .setup-card h2 {
-            margin-bottom: 20px;
-            font-size: 20px;
-            text-align: center;
-            color: #4cd964;
-        }
-
-        .input-group {
-            margin-bottom: 14px;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 13px;
-            margin-bottom: 6px;
-            color: #a0aec0;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 12px;
-            background: #0b131e;
-            border: 1px solid #2d3748;
-            border-radius: 8px;
-            color: #fff;
-            font-size: 16px;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: #4cd964;
-        }
-
-        .launch-btn {
-            width: 100%;
-            padding: 14px;
-            background: #2ba696;
-            border: none;
-            border-radius: 8px;
-            color: #ffffff;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        /* Swish Confirmation Screen */
-        #swish-app {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: none;
             flex-direction: column;
             background: #0b121c;
             user-select: none;
             cursor: pointer;
         }
 
-        /* Top iOS Status Bar */
+        /* Status Bar */
         .status-bar {
             height: 44px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
-            font-size: 14px;
+            padding: 0 24px;
+            font-size: 15px;
             font-weight: 600;
             color: #ffffff;
             z-index: 10;
@@ -126,14 +54,15 @@
         }
 
         .battery-box {
-            border: 1px solid #fff;
-            border-radius: 3px;
-            padding: 1px 3px;
+            border: 1.5px solid #fff;
+            border-radius: 4px;
+            padding: 1px 4px;
             font-size: 10px;
+            font-weight: 700;
         }
 
-        /* Confirmation Main Layout */
-        .confirmation-container {
+        /* Main Container */
+        .main-container {
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -141,47 +70,47 @@
             overflow: hidden;
         }
 
-        /* Green Header with curved bottom edge */
+        /* Green Header */
         .green-header {
             flex: 0 0 52%;
             background: linear-gradient(135deg, #189856 0%, #72e8a4 100%);
-            border-bottom-left-radius: 36px;
-            border-bottom-right-radius: 36px;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
-            box-shadow: 0 8px 25px rgba(24, 152, 86, 0.35);
+            box-shadow: 0 10px 30px rgba(24, 152, 86, 0.4);
         }
 
         .check-circle {
-            width: 82px;
-            height: 82px;
-            border: 3px solid rgba(255, 255, 255, 0.85);
+            width: 86px;
+            height: 86px;
+            border: 3.5px solid rgba(255, 255, 255, 0.9);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         .check-checkmark {
-            width: 38px;
-            height: 20px;
-            border-left: 4px solid #ffffff;
-            border-bottom: 4px solid #ffffff;
+            width: 40px;
+            height: 22px;
+            border-left: 4.5px solid #ffffff;
+            border-bottom: 4.5px solid #ffffff;
             transform: rotate(-45deg) translate(3px, -2px);
         }
 
         .success-message {
-            font-size: 24px;
+            font-size: 25px;
             font-weight: 600;
             color: #ffffff;
-            letter-spacing: -0.3px;
+            letter-spacing: -0.4px;
         }
 
-        /* Details Section */
+        /* Details Body */
         .details-body {
             flex: 1;
             display: flex;
@@ -199,27 +128,27 @@
         }
 
         .recipient-name {
-            font-size: 26px;
+            font-size: 27px;
             font-weight: 700;
             color: #ffffff;
             margin-bottom: 2px;
-            letter-spacing: -0.2px;
+            letter-spacing: -0.3px;
         }
 
         .recipient-phone {
             font-size: 15px;
             color: #94a3b8;
-            margin-bottom: 22px;
+            margin-bottom: 24px;
         }
 
         .amount-text {
-            font-size: 42px;
+            font-size: 44px;
             font-weight: 700;
             color: #ffffff;
             letter-spacing: -0.5px;
         }
 
-        /* Bottom Brand Bar */
+        /* Bottom Footer Bar */
         .bottom-bar {
             height: 80px;
             display: flex;
@@ -235,18 +164,10 @@
             gap: 10px;
         }
 
-        /* Exact Swish Logo Graphic reproduction */
-        .swish-logo-svg {
-            width: 32px;
+        /* Using actual user asset IMG_4552.png */
+        .swish-logo-img {
             height: 32px;
-        }
-
-        .swish-word {
-            font-size: 24px;
-            font-weight: 700;
-            font-style: italic;
-            letter-spacing: -1px;
-            color: #ffffff;
+            width: auto;
         }
 
         .close-circle {
@@ -287,43 +208,18 @@
 </head>
 <body>
 
-    <!-- Setup Form -->
-    <div id="setup-screen">
-        <div class="setup-card">
-            <h2>Swish Simuleringsinställningar</h2>
-            <div class="input-group">
-                <label>Mottagarnamn</label>
-                <input type="text" id="cfg-name" value="Andersson Sam">
-            </div>
-            <div class="input-group">
-                <label>Telefonnummer</label>
-                <input type="text" id="cfg-phone" value="+46 70 887 12 16">
-            </div>
-            <div class="input-group">
-                <label>Belopp</label>
-                <input type="text" id="cfg-amount" value="375 kr">
-            </div>
-            <div class="input-group">
-                <label>Datum & Tid</label>
-                <input type="text" id="cfg-date" value="17 mars 2026, kl 13:10">
-            </div>
-            <button class="launch-btn" onclick="startSimulation()">Visa Skärm</button>
-        </div>
-    </div>
-
-    <!-- Replicated Swish App Screen -->
-    <div id="swish-app" onclick="handleScreenTap(event)">
-        <!-- Status Bar -->
+    <div id="swish-screen" onclick="handleScreenTap(event)">
+        <!-- Live Status Bar -->
         <div class="status-bar">
-            <span id="disp-status-time">13:10</span>
+            <span id="live-time">01:46</span>
             <div class="status-right">
                 <span>5G</span>
-                <div class="battery-box">86</div>
+                <div class="battery-box">80</div>
             </div>
         </div>
 
         <!-- Confirmation Content -->
-        <div class="confirmation-container">
+        <div class="main-container">
             <div class="green-header">
                 <div class="check-circle">
                     <div class="check-checkmark"></div>
@@ -332,68 +228,50 @@
             </div>
 
             <div class="details-body">
-                <div class="transaction-date" id="disp-date">17 mars 2026, kl 13:10</div>
-                <div class="recipient-name" id="disp-name">Andersson Sam</div>
-                <div class="recipient-phone" id="disp-phone">+46 70 887 12 16</div>
-                <div class="amount-text" id="disp-amount">375 kr</div>
+                <div class="transaction-date" id="display-date">25 aug. 2026, kl 01:46</div>
+                <div class="recipient-name">Shaqeel</div>
+                <div class="recipient-phone">+46 70 000 00 00</div>
+                <div class="amount-text">1 kr</div>
             </div>
 
-            <!-- Bottom Footer Bar with authentic logo -->
+            <!-- Bottom Footer Bar with actual uploaded logo asset -->
             <div class="bottom-bar" onclick="event.stopPropagation()">
                 <div class="brand-lockup">
-                    <svg class="swish-logo-svg" viewBox="0 0 100 100">
-                        <defs>
-                            <linearGradient id="swishGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#00ffff" />
-                                <stop offset="50%" stop-color="#0080ff" />
-                                <stop offset="100%" stop-color="#8000ff" />
-                            </linearGradient>
-                            <linearGradient id="swishGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#ffff00" />
-                                <stop offset="50%" stop-color="#ff8000" />
-                                <stop offset="100%" stop-color="#ff0080" />
-                            </linearGradient>
-                        </defs>
-                        <!-- Left Arc -->
-                        <path d="M50 10 A40 40 0 0 0 25 85 L35 75 A25 25 0 0 1 50 25 Z" fill="url(#swishGrad1)" />
-                        <!-- Right Arc -->
-                        <path d="M50 90 A40 40 0 0 0 75 15 L65 25 A25 25 0 0 1 50 75 Z" fill="url(#swishGrad2)" />
-                    </svg>
-                    <div class="swish-word">swish</div>
+                    <!-- IMG_4552.png asset reference -->
+                    <img src="IMG_4552.png" alt="Swish Logo" class="swish-logo-img">
                 </div>
-                <button class="close-circle" onclick="returnToSetup()">✕</button>
+                <button class="close-circle" onclick="location.reload()">✕</button>
             </div>
         </div>
     </div>
 
     <script>
-        function startSimulation() {
-            document.getElementById('disp-name').innerText = document.getElementById('cfg-name').value;
-            document.getElementById('disp-phone').innerText = document.getElementById('cfg-phone').value;
-            document.getElementById('disp-amount').innerText = document.getElementById('cfg-amount').value;
+        // Sync clock with actual system time immediately
+        function updateLiveClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const timeStr = `${hours}:${minutes}`;
             
-            const dateStr = document.getElementById('cfg-date').value;
-            document.getElementById('disp-date').innerText = dateStr;
+            document.getElementById('live-time').innerText = timeStr;
+
+            const months = ['jan.', 'feb.', 'mars', 'apr.', 'maj', 'juni', 'juli', 'aug.', 'sep.', 'okt.', 'nov.', 'dec.'];
+            const day = now.getDate();
+            const month = months[now.getMonth()];
+            const year = now.getFullYear();
             
-            if(dateStr.includes('kl ')) {
-                document.getElementById('disp-status-time').innerText = dateStr.split('kl ')[1];
-            }
-
-            document.getElementById('setup-screen').style.display = 'none';
-            document.getElementById('swish-app').style.display = 'flex';
+            document.getElementById('display-date').innerText = `${day} ${month} ${year}, kl ${timeStr}`;
         }
+        
+        updateLiveClock();
+        setInterval(updateLiveClock, 10000);
 
-        function returnToSetup() {
-            document.getElementById('swish-app').style.display = 'none';
-            document.getElementById('setup-screen').style.display = 'flex';
-        }
-
-        // Trigger glitter particle burst and authentic audio chime on tap
+        // Glitter effect & audio chime on tap
         function handleScreenTap(e) {
             playChimeSound();
             
-            const app = document.getElementById('swish-app');
-            const rect = app.getBoundingClientRect();
+            const screen = document.getElementById('swish-screen');
+            const rect = screen.getBoundingClientRect();
             const clickX = e.clientX - rect.left;
             const clickY = e.clientY - rect.top;
 
@@ -415,7 +293,7 @@
                 particle.style.setProperty('--dx', `${dx}px`);
                 particle.style.setProperty('--dy', `${dy}px`);
 
-                app.appendChild(particle);
+                screen.appendChild(particle);
 
                 setTimeout(() => {
                     particle.remove();
@@ -423,7 +301,6 @@
             }
         }
 
-        // Synthesize authentic notification bell/chime sound using Web Audio API
         function playChimeSound() {
             try {
                 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -431,8 +308,8 @@
                 const gainNode = audioCtx.createGain();
 
                 osc.type = 'sine';
-                osc.frequency.setValueAtTime(1046.50, audioCtx.currentTime); // C6 note
-                osc.frequency.exponentialRampToValueAtTime(1318.51, audioCtx.currentTime + 0.15); // E6 note
+                osc.frequency.setValueAtTime(1046.50, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(1318.51, audioCtx.currentTime + 0.15);
 
                 gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
                 gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.8);
@@ -442,9 +319,7 @@
 
                 osc.start();
                 osc.stop(audioCtx.currentTime + 0.8);
-            } catch (err) {
-                // Audio context suppressed or blocked by browser policy until interaction
-            }
+            } catch (err) {}
         }
     </script>
 </body>
