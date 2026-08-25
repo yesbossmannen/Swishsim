@@ -33,6 +33,7 @@
             align-items: center;
             padding: 24px;
             z-index: 100;
+            overflow-y: auto;
         }
 
         .setup-card {
@@ -112,16 +113,17 @@
             overflow: hidden;
         }
 
-        /* Green Header - Organiskt rundad kant och flytande partiklar */
+        /* Green Header - Exakt höjd och flack kurva som originalet */
         .green-header {
-            flex: 0 0 56%;
-            background: radial-gradient(circle at 50% 30%, #4ae58b 0%, #169252 70%);
-            border-bottom-left-radius: 50% 28px;
-            border-bottom-right-radius: 50% 28px;
+            flex: 0 0 52%;
+            background: radial-gradient(circle at 50% 25%, #4ae58b 0%, #169252 75%);
+            border-bottom-left-radius: 50% 30px;
+            border-bottom-right-radius: 50% 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
+            padding-top: 50px;
             position: relative;
             box-shadow: 0 10px 30px rgba(22, 146, 82, 0.4);
             overflow: hidden;
@@ -129,9 +131,9 @@
         }
 
         .check-circle {
-            width: 82px;
-            height: 82px;
-            border: 3.5px solid rgba(255, 255, 255, 0.9);
+            width: 76px;
+            height: 76px;
+            border: 3px solid rgba(255, 255, 255, 0.9);
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -141,18 +143,18 @@
         }
 
         .check-checkmark {
-            width: 38px;
-            height: 20px;
-            border-left: 4.5px solid #ffffff;
-            border-bottom: 4.5px solid #ffffff;
+            width: 32px;
+            height: 16px;
+            border-left: 4px solid #ffffff;
+            border-bottom: 4px solid #ffffff;
             transform: rotate(-45deg) translate(3px, -2px);
         }
 
         .success-message {
-            font-size: 24px;
-            font-weight: 600;
+            font-size: 22px;
+            font-weight: 500;
             color: #ffffff;
-            letter-spacing: -0.4px;
+            letter-spacing: -0.2px;
             z-index: 2;
         }
 
@@ -162,19 +164,19 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 28px;
+            padding-top: 14px;
             background-color: #0b121c;
         }
 
         .transaction-date {
-            font-size: 14px;
+            font-size: 13.5px;
             color: #94a3b8;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             font-weight: 400;
         }
 
         .recipient-name {
-            font-size: 27px;
+            font-size: 25px;
             font-weight: 700;
             color: #ffffff;
             margin-bottom: 2px;
@@ -182,36 +184,43 @@
         }
 
         .recipient-phone {
-            font-size: 15px;
+            font-size: 14.5px;
             color: #94a3b8;
-            margin-bottom: 24px;
+            margin-bottom: 18px;
         }
 
         .amount-text {
-            font-size: 44px;
+            font-size: 38px;
             font-weight: 700;
             color: #ffffff;
             letter-spacing: -0.5px;
+            margin-bottom: 10px;
+        }
+
+        .message-text {
+            font-size: 13px;
+            font-weight: 600;
+            color: #94a3b8;
+            letter-spacing: 1.5px;
         }
 
         /* Bottom Footer Bar */
         .bottom-bar {
-            height: 80px;
+            height: 75px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 24px;
+            padding: 0 24px 15px 24px;
             background-color: #0b121c;
         }
 
         .brand-lockup {
             display: flex;
             align-items: center;
-            gap: 10px;
         }
 
         .swish-logo-img {
-            height: 32px;
+            height: 28px;
             width: auto;
         }
 
@@ -225,11 +234,11 @@
             align-items: center;
             cursor: pointer;
             color: #ffffff;
-            font-size: 20px;
+            font-size: 18px;
             border: none;
         }
 
-        /* Slumpmässigt flytande partiklar inuti gröna ytan */
+        /* Flytande partiklar */
         .ambient-particle {
             position: absolute;
             background: #ffffff;
@@ -241,18 +250,9 @@
         }
 
         @keyframes floatRandom {
-            0% {
-                transform: translate(0, 0) scale(0.8);
-                opacity: 0.2;
-            }
-            50% {
-                transform: translate(15px, -20px) scale(1.3);
-                opacity: 0.8;
-            }
-            100% {
-                transform: translate(-10px, 10px) scale(0.8);
-                opacity: 0.2;
-            }
+            0% { transform: translate(0, 0) scale(0.8); opacity: 0.2; }
+            50% { transform: translate(15px, -20px) scale(1.3); opacity: 0.8; }
+            100% { transform: translate(-10px, 10px) scale(0.8); opacity: 0.2; }
         }
 
         /* Tryck-partiklar (Burst) */
@@ -267,14 +267,8 @@
         }
 
         @keyframes burstAnim {
-            0% {
-                transform: translate(0, 0) scale(0.4);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(var(--dx), var(--dy)) scale(1.6);
-                opacity: 0;
-            }
+            0% { transform: translate(0, 0) scale(0.4); opacity: 1; }
+            100% { transform: translate(var(--dx), var(--dy)) scale(1.6); opacity: 0; }
         }
     </style>
 </head>
@@ -286,15 +280,19 @@
             <h2>Swish Simuleringsinställningar</h2>
             <div class="input-group">
                 <label>Mottagarnamn</label>
-                <input type="text" id="cfg-name" value="Shaqeel">
+                <input type="text" id="cfg-name" value="Francisco Cabuhat Liam">
             </div>
             <div class="input-group">
                 <label>Telefonnummer</label>
-                <input type="text" id="cfg-phone" value="+46 70 000 00 00">
+                <input type="text" id="cfg-phone" value="+46 79 077 44 15">
             </div>
             <div class="input-group">
                 <label>Belopp</label>
-                <input type="text" id="cfg-amount" value="1 kr">
+                <input type="text" id="cfg-amount" value="275 kr">
+            </div>
+            <div class="input-group">
+                <label>Meddelande</label>
+                <input type="text" id="cfg-message" value="JAMAN">
             </div>
             <button class="launch-btn" onclick="startSimulation()">Visa Skärm</button>
         </div>
@@ -303,7 +301,7 @@
     <!-- Swish App Simulation Screen -->
     <div id="swish-app">
         <div class="main-container">
-            <!-- Green Header (Klickbar för ljud och partiklar) -->
+            <!-- Green Header -->
             <div class="green-header" id="green-header" onclick="handleGreenHeaderTap(event)">
                 <div class="check-circle">
                     <div class="check-checkmark"></div>
@@ -312,10 +310,11 @@
             </div>
 
             <div class="details-body">
-                <div class="transaction-date" id="display-date">25 aug. 2026, kl 02:12</div>
-                <div class="recipient-name" id="display-name">Shaqeel</div>
-                <div class="recipient-phone" id="display-phone">+46 70 000 00 00</div>
-                <div class="amount-text" id="display-amount">1 kr</div>
+                <div class="transaction-date" id="display-date">16 juli 2026, kl 20:57</div>
+                <div class="recipient-name" id="display-name">Francisco Cabuhat Liam</div>
+                <div class="recipient-phone" id="display-phone">+46 79 077 44 15</div>
+                <div class="amount-text" id="display-amount">275 kr</div>
+                <div class="message-text" id="display-message">JAMAN</div>
             </div>
 
             <!-- Bottom Footer Bar -->
@@ -329,7 +328,6 @@
     </div>
 
     <script>
-        // Skapa slumpmässigt flytande partiklar
         function initAmbientParticles() {
             const header = document.getElementById('green-header');
             for (let i = 0; i < 20; i++) {
@@ -351,8 +349,9 @@
             document.getElementById('display-name').innerText = document.getElementById('cfg-name').value;
             document.getElementById('display-phone').innerText = document.getElementById('cfg-phone').value;
             document.getElementById('display-amount').innerText = document.getElementById('cfg-amount').value;
+            document.getElementById('display-message').innerText = document.getElementById('cfg-message').value.toUpperCase();
             
-            // Frys tiden till exakt nu när betalningen startar
+            // Frys tiden till exakt nu
             const now = new Date();
             const months = ['jan.', 'feb.', 'mars', 'apr.', 'maj', 'juni', 'juli', 'aug.', 'sep.', 'okt.', 'nov.', 'dec.'];
             const day = now.getDate();
@@ -372,7 +371,6 @@
             document.getElementById('setup-screen').style.display = 'flex';
         }
 
-        // Klickhanterare för gröna ytan – tillåter flera ljudfiler att spelas samtidigt
         function handleGreenHeaderTap(e) {
             const audio = new Audio('Ljud.mp3');
             audio.currentTime = 0;
