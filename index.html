@@ -113,32 +113,36 @@
             overflow: hidden;
         }
 
-        /* Green Header - Går hela vägen upp till toppen och har korrekt färgton */
+        /* Green Header - Börjar nu exakt på absolut toppen (0) */
         .green-header {
-            flex: 0 0 57%;
-            background: radial-gradient(circle at 50% 15%, #62ea7c 0%, #179352 75%);
-            border-bottom-left-radius: 50% 32px;
-            border-bottom-right-radius: 50% 32px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 57%;
+            background: radial-gradient(circle at 50% 12%, #60ea7e 0%, #169252 75%);
+            border-bottom-left-radius: 50% 36px;
+            border-bottom-right-radius: 50% 36px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding-top: 25px;
-            position: relative;
+            padding-top: 35px;
             box-shadow: 0 10px 30px rgba(22, 146, 82, 0.4);
             overflow: hidden;
             cursor: pointer;
+            z-index: 2;
         }
 
         .check-circle {
-            width: 78px;
-            height: 78px;
+            width: 76px;
+            height: 76px;
             border: 3px solid rgba(255, 255, 255, 0.9);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
             z-index: 2;
         }
 
@@ -160,18 +164,23 @@
 
         /* Details Body */
         .details-body {
-            flex: 1;
+            position: absolute;
+            top: 57%;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 57% - 75px);
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 12px;
+            padding-top: 14px;
             background-color: #0b121c;
+            z-index: 1;
         }
 
         .transaction-date {
             font-size: 13.5px;
             color: #94a3b8;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             font-weight: 400;
         }
 
@@ -186,7 +195,7 @@
         .recipient-phone {
             font-size: 14.5px;
             color: #94a3b8;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
         .amount-text {
@@ -194,11 +203,11 @@
             font-weight: 700;
             color: #ffffff;
             letter-spacing: -0.5px;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .message-text {
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 600;
             color: #94a3b8;
             letter-spacing: 1.5px;
@@ -206,12 +215,17 @@
 
         /* Bottom Footer Bar */
         .bottom-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
             height: 75px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 24px 15px 24px;
             background-color: #0b121c;
+            z-index: 3;
         }
 
         .brand-lockup {
@@ -310,7 +324,7 @@
             </div>
 
             <div class="details-body">
-                <div class="transaction-date" id="display-date">16 juli 2026, kl 20:57</div>
+                <div class="transaction-date" id="display-date">25 aug. 2026, kl 02:36</div>
                 <div class="recipient-name" id="display-name">Francisco Cabuhat Liam</div>
                 <div class="recipient-phone" id="display-phone">+46 79 077 44 15</div>
                 <div class="amount-text" id="display-amount">275 kr</div>
