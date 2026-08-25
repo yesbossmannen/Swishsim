@@ -9,7 +9,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body, html {
@@ -18,6 +18,7 @@
             background-color: #0b121c;
             overflow: hidden;
             color: #ffffff;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* Setup Form Screen */
@@ -113,50 +114,50 @@
             overflow: hidden;
         }
 
-        /* Green Header - Börjar nu exakt på absolut toppen (0) */
+        /* Green Header - Exakt höjd och kurva som originalet */
         .green-header {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 57%;
-            background: radial-gradient(circle at 50% 12%, #60ea7e 0%, #169252 75%);
-            border-bottom-left-radius: 50% 36px;
-            border-bottom-right-radius: 50% 36px;
+            height: 48%;
+            background: radial-gradient(circle at 50% 10%, #68ec7b 0%, #179352 75%);
+            border-bottom-left-radius: 50% 42px;
+            border-bottom-right-radius: 50% 42px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding-top: 35px;
-            box-shadow: 0 10px 30px rgba(22, 146, 82, 0.4);
+            padding-top: 28px;
+            box-shadow: 0 8px 25px rgba(22, 146, 82, 0.35);
             overflow: hidden;
             cursor: pointer;
             z-index: 2;
         }
 
         .check-circle {
-            width: 76px;
-            height: 76px;
-            border: 3px solid rgba(255, 255, 255, 0.9);
+            width: 70px;
+            height: 70px;
+            border: 2.5px solid rgba(255, 255, 255, 0.85);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             z-index: 2;
         }
 
         .check-checkmark {
-            width: 32px;
-            height: 16px;
-            border-left: 4px solid #ffffff;
-            border-bottom: 4px solid #ffffff;
-            transform: rotate(-45deg) translate(3px, -2px);
+            width: 28px;
+            height: 14px;
+            border-left: 3.5px solid #ffffff;
+            border-bottom: 3.5px solid #ffffff;
+            transform: rotate(-45deg) translate(2px, -2px);
         }
 
         .success-message {
-            font-size: 22px;
-            font-weight: 500;
+            font-size: 21px;
+            font-weight: 400;
             color: #ffffff;
             letter-spacing: -0.2px;
             z-index: 2;
@@ -165,10 +166,10 @@
         /* Details Body */
         .details-body {
             position: absolute;
-            top: 57%;
+            top: 48%;
             left: 0;
             width: 100%;
-            height: calc(100% - 57% - 75px);
+            height: calc(100% - 48% - 90px);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -178,52 +179,53 @@
         }
 
         .transaction-date {
-            font-size: 13.5px;
-            color: #94a3b8;
-            margin-bottom: 10px;
+            font-size: 13px;
+            color: #8a9ba8;
+            margin-bottom: 12px;
             font-weight: 400;
         }
 
         .recipient-name {
-            font-size: 25px;
-            font-weight: 700;
+            font-size: 24px;
+            font-weight: 600;
             color: #ffffff;
             margin-bottom: 2px;
             letter-spacing: -0.3px;
         }
 
         .recipient-phone {
-            font-size: 14.5px;
-            color: #94a3b8;
-            margin-bottom: 14px;
+            font-size: 14px;
+            color: #8a9ba8;
+            margin-bottom: 18px;
+            font-weight: 400;
         }
 
         .amount-text {
-            font-size: 38px;
-            font-weight: 700;
+            font-size: 36px;
+            font-weight: 600;
             color: #ffffff;
-            letter-spacing: -0.5px;
-            margin-bottom: 8px;
+            letter-spacing: -0.4px;
+            margin-bottom: 10px;
         }
 
         .message-text {
-            font-size: 12.5px;
-            font-weight: 600;
-            color: #94a3b8;
-            letter-spacing: 1.5px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #8a9ba8;
+            letter-spacing: 1.8px;
         }
 
-        /* Bottom Footer Bar */
+        /* Bottom Footer Bar - Exakt som originalets layout */
         .bottom-bar {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 75px;
+            height: 90px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 24px 15px 24px;
+            padding: 0 24px 20px 24px;
             background-color: #0b121c;
             z-index: 3;
         }
@@ -231,17 +233,18 @@
         .brand-lockup {
             display: flex;
             align-items: center;
+            padding-bottom: 4px;
         }
 
         .swish-logo-img {
-            height: 28px;
+            height: 26px;
             width: auto;
         }
 
         .close-circle {
-            width: 42px;
-            height: 42px;
-            background: #172130;
+            width: 48px;
+            height: 48px;
+            background: #19283d;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -250,6 +253,8 @@
             color: #ffffff;
             font-size: 18px;
             border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            margin-bottom: 4px;
         }
 
         /* Flytande partiklar */
@@ -324,7 +329,7 @@
             </div>
 
             <div class="details-body">
-                <div class="transaction-date" id="display-date">25 aug. 2026, kl 02:36</div>
+                <div class="transaction-date" id="display-date">25 aug. 2026, kl 02:41</div>
                 <div class="recipient-name" id="display-name">Francisco Cabuhat Liam</div>
                 <div class="recipient-phone" id="display-phone">+46 79 077 44 15</div>
                 <div class="amount-text" id="display-amount">275 kr</div>
