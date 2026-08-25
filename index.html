@@ -114,7 +114,7 @@
             overflow: hidden;
         }
 
-        /* Green Header - Exakt höjd och kurva som originalet */
+        /* Green Header */
         .green-header {
             position: absolute;
             top: 0;
@@ -215,7 +215,7 @@
             letter-spacing: 1.8px;
         }
 
-        /* Bottom Footer Bar - Exakt som originalets layout */
+        /* Bottom Footer Bar */
         .bottom-bar {
             position: absolute;
             bottom: 0;
@@ -306,8 +306,8 @@
                 <input type="text" id="cfg-phone" value="+46 79 077 44 15">
             </div>
             <div class="input-group">
-                <label>Belopp</label>
-                <input type="text" id="cfg-amount" value="275 kr">
+                <label>Belopp (skriv t.ex. 15,92)</label>
+                <input type="text" id="cfg-amount" value="15,92">
             </div>
             <div class="input-group">
                 <label>Meddelande</label>
@@ -329,10 +329,10 @@
             </div>
 
             <div class="details-body">
-                <div class="transaction-date" id="display-date">25 aug. 2026, kl 02:41</div>
+                <div class="transaction-date" id="display-date"></div>
                 <div class="recipient-name" id="display-name">Francisco Cabuhat Liam</div>
                 <div class="recipient-phone" id="display-phone">+46 79 077 44 15</div>
-                <div class="amount-text" id="display-amount">275 kr</div>
+                <div class="amount-text" id="display-amount">15,92 kr</div>
                 <div class="message-text" id="display-message">JAMAN</div>
             </div>
 
@@ -367,7 +367,14 @@
         function startSimulation() {
             document.getElementById('display-name').innerText = document.getElementById('cfg-name').value;
             document.getElementById('display-phone').innerText = document.getElementById('cfg-phone').value;
-            document.getElementById('display-amount').innerText = document.getElementById('cfg-amount').value;
+            
+            // Hämtar beloppet och lägger till " kr" automatiskt om det inte redan finns med
+            let rawAmount = document.getElementById('cfg-amount').value.trim();
+            if (!rawAmount.toLowerCase().endsWith('kr')) {
+                rawAmount += ' kr';
+            }
+            document.getElementById('display-amount').innerText = rawAmount;
+
             document.getElementById('display-message').innerText = document.getElementById('cfg-message').value.toUpperCase();
             
             // Frys tiden till exakt nu
